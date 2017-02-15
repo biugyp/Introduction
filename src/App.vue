@@ -1,13 +1,17 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <leftNav></leftNav>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import leftNav from 'components/LeftNav'
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    leftNav
+  }
 }
 </script>
 
