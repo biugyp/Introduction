@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <leftNav></leftNav>
-    <router-view></router-view>
+    <leftNav class="leftNav"></leftNav>
+    <router-view class="routerView"></router-view>
   </div>
 </template>
 
@@ -21,7 +21,27 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  /*color: #2c3e50;*/
+  /*margin-top: 60px;*/
+  height: inherit;
 }
+
+html, body {
+  height:100%;  
+  width:100%;
+  background-color: ghostwhite;
+  overflow: hidden;
+}
+
+.leftNav{
+  position: absolute;
+  border: 1px solid black;
+}
+
+.routerView{
+  height: 70%;
+  width: 70%;
+  border:1px solid black;
+}
+
 </style>
