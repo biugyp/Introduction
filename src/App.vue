@@ -30,15 +30,6 @@ export default {
   .container{
     height: inherit;
     position: relative;
-    .leftNav {
-      height:50%;
-      width:10%;
-      border: 1px solid black;
-      overflow: auto;
-      margin: auto;
-      position: absolute;
-      top: 0; left: 0; bottom: 0; right: 80%;
-    }
 
     .routerView {
       border: 1px solid black;
