@@ -16,10 +16,13 @@ export default {
 </script>
 
 <style lang="less" scoped>
+  @import "../assets/color";
+  @import "../assets/size";
   .leftNav {
     height:50%;
     width:10%;
     border: 1px solid black;
+    border-radius: @leftBorderR;
     overflow: auto;
     margin: auto;
     position: absolute;
