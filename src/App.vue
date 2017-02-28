@@ -29,10 +29,10 @@ export default {
       }
     },100)
 
-    this.routerPage=this.routerArray.indexOf(this.$route.path.slice(1))
+    this.routerPage=this.routerArray.indexOf(this.$route.path.slice(1))===-1?0:this.routerArray.indexOf(this.$route.path.slice(1))
 
     this.$router.beforeEach((to, from, next) => {
-      this.routerPage=this.routerArray.indexOf(to.path.slice(1))
+      this.routerPage=this.routerArray.indexOf(to.path.slice(1))===-1?0:this.routerArray.indexOf(to.path.slice(1))
       next()
     })
   },
