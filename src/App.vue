@@ -1,7 +1,7 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
   <div id="app">
     <div class="container" v-on:mousewheel="mouseWheelEvent($event)" v-on:DOMMouseScroll="mouseWheelEvent($event)">
-      <leftNav class="leftNav" v-show="navShow"></leftNav>
+      <leftNav class="leftNav" v-show="navShow" v-bind:handleScroll="routerPage" v-on:routerChange="routerChange"></leftNav>
       <router-view class="routerView"></router-view>
     </div>
   </div>
@@ -16,35 +16,43 @@ export default {
     return{
       routerArray:['information','project','skill','communication'],
       routerPage:0,
-      navShow:true
+      navShow:true,
     }
   },
   created(){
     let _this=this;
     window.onresize=_.debounce(function(){
-      console.log(1)
       if(document.body.clientWidth<=760){
         _this.navShow=false;
       }else{
         _this.navShow=true
       }
-    },50)
+    },100)
+
+    this.routerPage=this.routerArray.indexOf(this.$route.path.slice(1))
+
+    this.$router.beforeEach((to, from, next) => {
+      this.routerPage=this.routerArray.indexOf(to.path.slice(1))
+      next()
+    })
   },
   methods: {
     mouseWheelEvent:_.debounce(function(event){
           let eventUpDownJudge=event.wheelDelta||event.detail
-          if(eventUpDownJudge>0){
+          if(eventUpDownJudge<0){
             //下
             this.routerPage<3?this.routerPage++:this.routerPage=0
-            console.log(1)
-          }else if(eventUpDownJudge<0){
+          }
+          if(eventUpDownJudge>0){
             //上
             this.routerPage>0?this.routerPage--:this.routerPage=3
-            console.log(-1)
           }
           this.$router.push(this.routerArray[this.routerPage])
           //
-    },150)
+    },150),
+    routerChange:function(num){
+      this.routerPage=num
+    }
   },
   components: {
     leftNav
@@ -53,6 +61,8 @@ export default {
 </script>
 
 <style lang="less">
+ @import "/assets/color";
+ @import "/assets/size";
 
 @media screen and (max-device-width:760px){
   .leftNav{
@@ -92,7 +102,7 @@ export default {
 html, body {
   height:100%;
   width:100%;
-  background-color: ghostwhite;
+  background-color: @main_background_color;
   overflow: hidden;
   margin: 0;
 }
