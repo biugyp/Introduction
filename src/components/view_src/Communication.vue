@@ -1,6 +1,6 @@
 <template>
     <div class="communication">
-        communication
+
     </div>
 </template>
 

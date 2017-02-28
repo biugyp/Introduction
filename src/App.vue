@@ -49,7 +49,7 @@ export default {
           }
           this.$router.push(this.routerArray[this.routerPage])
           //
-    },150),
+    },50),
     routerChange:function(num){
       this.routerPage=num
     }
@@ -72,6 +72,7 @@ export default {
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  /*font-family: Lato,"Microsoft YaHei",sans-serif;*/
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -85,7 +86,6 @@ export default {
     position: relative;
 
     .routerView {
-      border: 1px solid black;
       width: 75%;
       height: 85%;
 
