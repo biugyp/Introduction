@@ -20,14 +20,10 @@ export default {
     }
   },
   created(){
-    let _this=this;
-    window.onresize=_.debounce(function(){
-      if(document.body.clientWidth<=760){
-        _this.navShow=false;
-      }else{
-        _this.navShow=true
-      }
-    },100)
+    
+    this.dyShowNav();
+
+    window.onresize=_.debounce(this.dyShowNav)
 
     this.routerPage=this.routerArray.indexOf(this.$route.path.slice(1))===-1?0:this.routerArray.indexOf(this.$route.path.slice(1))
 
@@ -52,6 +48,13 @@ export default {
     },50),
     routerChange:function(num){
       this.routerPage=num
+    },
+    dyShowNav:function(){
+      if(document.body.clientWidth<=760){
+        this.navShow=false;
+      }else{
+        this.navShow=true
+      }
     }
   },
   components: {
@@ -68,8 +71,46 @@ export default {
   .leftNav{
     display: none;
   }
+  #app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  /*font-family: Lato,"Microsoft YaHei",sans-serif;*/
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  /*color: #2c3e50;*/
+  /*margin-top: 60px;*/
+  height: inherit;
+  min-height: 568px;
+
+
+  .container{
+    height: inherit;
+    position: relative;
+
+    .routerView {
+      width: 75%;
+      height: 100%;
+
+      min-width: 15em;
+
+      overflow: auto;
+      margin: auto;
+      position: absolute;
+      top: 0; left: 0; bottom: 15%; right: 0;
+    }
+  }
+  }
+  html, body {
+  height:100%;
+  width:100%;
+  background-color: @main_background_color;
+  overflow: hidden;
+  margin: 0;
+}
 }
 
+
+@media screen and (min-device-width:760px){
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   /*font-family: Lato,"Microsoft YaHei",sans-serif;*/
@@ -81,33 +122,32 @@ export default {
   height: inherit;
   min-height: 568px;
 
+
   .container{
     height: inherit;
     position: relative;
 
     .routerView {
       width: 75%;
-      height: 85%;
+      height: 100%;
 
       min-width: 15em;
 
       overflow: auto;
       margin: auto;
       position: absolute;
-      top: 0; left: 0; bottom: 0; right: 0;
+      top: 10%; left: 0; bottom: 0; right: 0;
     }
   }
-}
-
-html, body {
+  }
+  html, body {
   height:100%;
   width:100%;
   background-color: @main_background_color;
   overflow: hidden;
   margin: 0;
 }
-
-
+}
 
 
 </style>

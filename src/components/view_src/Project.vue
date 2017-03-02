@@ -1,6 +1,6 @@
 <template>
     <div class="project">
-
+ 
     </div>
 </template>
 
@@ -16,5 +16,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-    
+  @import "../../assets/color";
+  @import "../../assets/size";
 </style>
