@@ -1,6 +1,6 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
   <div id="app">
-    <div class="container" v-on:mousewheel="mouseWheelEvent($event)" v-on:DOMMouseScroll="mouseWheelEvent($event)">
+    <div class="container" v-on:mousewheel="mouseWheelEvent($event)" v-on:DOMMouseScroll="mouseWheelEvent($event)" v-on:touchstart="touchStart($event)" v-on:touchmove="touchMove($event)" v-on:touchend="touchEnd($event)">
       <leftNav class="leftNav" v-show="navShow" v-bind:handleScroll="routerPage" v-on:routerChange="routerChange"></leftNav>
       <router-view class="routerView"></router-view>
     </div>
@@ -17,13 +17,14 @@ export default {
       routerArray:['information','project','skill','communication'],
       routerPage:0,
       navShow:true,
+      startY:-1
     }
   },
   created(){
     
     this.dyShowNav();
 
-    window.onresize=_.debounce(this.dyShowNav)
+    window.onresize=_.debounce(this.dyShowNav,50)
 
     this.routerPage=this.routerArray.indexOf(this.$route.path.slice(1))===-1?0:this.routerArray.indexOf(this.$route.path.slice(1))
 
@@ -34,6 +35,7 @@ export default {
   },
   methods: {
     mouseWheelEvent:_.debounce(function(event){
+          event.preventDefault();
           let eventUpDownJudge=event.wheelDelta||event.detail
           if(eventUpDownJudge<0){
             //下
@@ -44,17 +46,38 @@ export default {
             this.routerPage>0?this.routerPage--:this.routerPage=3
           }
           this.$router.push(this.routerArray[this.routerPage])
-          //
     },50),
     routerChange:function(num){
       this.routerPage=num
     },
     dyShowNav:function(){
+      console.log(document.body.clientWidth)
       if(document.body.clientWidth<=760){
-        this.navShow=false;
+        this.navShow=false
       }else{
         this.navShow=true
       }
+    },
+    touchStart:_.debounce(function(event){
+       event.preventDefault();
+       let touch=event.touches[0]
+       this.startY = touch.pageY
+    },50),
+    touchMove:_.debounce(function(event){
+      event.preventDefault()
+      let touch = event.touches[0]             
+      if(touch.pageY - this.startY<-150){
+        //上
+        this.routerPage>0?this.routerPage--:this.routerPage=3
+      }else if(touch.pageY - this.startY>150){
+        //下
+        this.routerPage<3?this.routerPage++:this.routerPage=0
+      }
+      this.$router.push(this.routerArray[this.routerPage])                                                        
+    }),
+    touchEnd(event){
+      event.preventDefault()
+      this.startY=-1
     }
   },
   components: {

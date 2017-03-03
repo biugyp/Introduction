@@ -47,7 +47,7 @@
         color: @font_color;
         text-decoration: none;
         font-size: 1.7em;
-        font-weight: border;
+        font-weight: 800;
         text-shadow: 0.5px 1px #22c3aa, 1px 2px #aee2d9;
       }
       a:hover {
