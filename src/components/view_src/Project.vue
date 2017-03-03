@@ -19,7 +19,7 @@
         <p class="projectItemInfo"><a href="https://github.com/Chan-Chun/Cellular-Automaton">Cellular-Automaton</a><a> | </a><a href="https://github.com/Chan-Chun/cc-audiobuffer">cc-audiobuffer</a></p>
       </div>
     </div>
-  </div>
+  </div> 
 </template>
 <script>
   import _ from 'lodash'
