@@ -55,6 +55,7 @@
    .project {
       position: relative;
       .projectContainer {
+        overflow: hidden;
         position: absolute;
         height: 70%;
         width: 100%;
@@ -105,6 +106,7 @@
     .project {
       position: relative;
       .projectContainer {
+        overflow: hidden;
         position: absolute;
         height: 70%;
         width: 100%;
