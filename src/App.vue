@@ -51,7 +51,6 @@ export default {
       this.routerPage=num
     },
     dyShowNav:function(){
-      console.log(document.body.clientWidth)
       if(document.body.clientWidth<=760){
         this.navShow=false
       }else{
@@ -65,16 +64,16 @@ export default {
     },50),
     touchMove:_.debounce(function(event){
       event.preventDefault()
-      let touch = event.touches[0]             
-      if(touch.pageY - this.startY<-150){
+      let touch = event.touches[0]          
+      if(touch.pageY - this.startY>0){
         //上
-        this.routerPage>0?this.routerPage--:this.routerPage=3
-      }else if(touch.pageY - this.startY>150){
-        //下
         this.routerPage<3?this.routerPage++:this.routerPage=0
+      }else if(touch.pageY - this.startY<0){
+        //下
+        this.routerPage>0?this.routerPage--:this.routerPage=3
       }
       this.$router.push(this.routerArray[this.routerPage])                                                        
-    }),
+    },50),
     touchEnd(event){
       event.preventDefault()
       this.startY=-1
