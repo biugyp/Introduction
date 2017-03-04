@@ -65,10 +65,10 @@ export default {
     touchMove:_.debounce(function(event){
       event.preventDefault()
       let touch = event.touches[0]          
-      if(touch.pageY - this.startY>0){
+      if(touch.pageY - this.startY<0){
         //上
         this.routerPage<3?this.routerPage++:this.routerPage=0
-      }else if(touch.pageY - this.startY<0){
+      }else if(touch.pageY - this.startY>0){
         //下
         this.routerPage>0?this.routerPage--:this.routerPage=3
       }
