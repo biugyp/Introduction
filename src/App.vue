@@ -1,6 +1,6 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
   <div id="app">
-    <div class="container" v-on:mousewheel="mouseWheelEvent($event)" v-on:DOMMouseScroll="mouseWheelEvent($event)">
+    <div class="container" v-on:mousewheel="mouseWheelEvent($event)" v-on:DOMMouseScroll="mouseWheelEvent($event)" v-on:touchstart="touchStart($event)" v-on:touchmove="touchMove($event)" v-on:touchend="touchEnd($event)">
       <leftNav class="leftNav" v-show="navShow" v-bind:handleScroll="routerPage" v-on:routerChange="routerChange"></leftNav>
       <router-view class="routerView"></router-view>
     </div>
@@ -56,28 +56,28 @@ export default {
       }else{
         this.navShow=true
       }
+    },
+    touchStart:_.debounce(function(event){
+       event.preventDefault();
+       let touch=event.touches[0]
+       this.startY = touch.pageY
+    },50),
+    touchMove:_.debounce(function(event){
+      event.preventDefault()
+      let touch = event.touches[0]          
+      if(touch.pageY - this.startY<0){
+        //上
+        this.routerPage<3?this.routerPage++:this.routerPage=0
+      }else if(touch.pageY - this.startY>0){
+        //下
+        this.routerPage>0?this.routerPage--:this.routerPage=3
+      }
+      this.$router.push(this.routerArray[this.routerPage])                                                        
+    },50),
+    touchEnd(event){
+      event.preventDefault()
+      this.startY=-1
     }
-    // touchStart:_.debounce(function(event){
-    //    event.preventDefault();
-    //    let touch=event.touches[0]
-    //    this.startY = touch.pageY
-    // },50),
-    // touchMove:_.debounce(function(event){
-    //   event.preventDefault()
-    //   let touch = event.touches[0]          
-    //   if(touch.pageY - this.startY<0){
-    //     //上
-    //     this.routerPage<3?this.routerPage++:this.routerPage=0
-    //   }else if(touch.pageY - this.startY>0){
-    //     //下
-    //     this.routerPage>0?this.routerPage--:this.routerPage=3
-    //   }
-    //   this.$router.push(this.routerArray[this.routerPage])                                                        
-    // },50),
-    // touchEnd(event){
-    //   event.preventDefault()
-    //   this.startY=-1
-    // }
   },
   components: {
     leftNav
