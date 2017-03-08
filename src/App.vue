@@ -56,7 +56,7 @@ export default {
       }else{
         this.navShow=true
       }
-    }
+    } 
     // touchStart:_.debounce(function(event){
     //    event.preventDefault();
     //    let touch=event.touches[0]
