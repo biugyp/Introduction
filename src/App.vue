@@ -1,6 +1,6 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
   <div id="app">
-    <div class="container" v-on:mousewheel="mouseWheelEvent($event)" v-on:DOMMouseScroll="mouseWheelEvent($event)">
+    <div class="container" v-on:mousewheel="mouseWheelEvent($event)" v-on:DOMMouseScroll="mouseWheelEvent($event)" v-on:tap="console.log(1)">
       <leftNav class="leftNav" v-show="navShow" v-bind:handleScroll="routerPage" v-on:routerChange="routerChange"></leftNav>
       <router-view class="routerView"></router-view>
     </div>
@@ -32,6 +32,7 @@ export default {
       this.routerPage=this.routerArray.indexOf(to.path.slice(1))===-1?0:this.routerArray.indexOf(to.path.slice(1))
       next()
     })
+
   },
   methods: {
     mouseWheelEvent:_.debounce(function(event){

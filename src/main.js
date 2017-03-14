@@ -4,9 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Element from 'element-ui'
+import VueTouch from 'vue-touch'
 import 'element-ui/lib/theme-default/index.css'
 
 Vue.use(Element)
+Vue.use(VueTouch, {name: 'v-touch'})
 
 /* eslint-disable no-new */
 new Vue({
