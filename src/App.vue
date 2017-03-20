@@ -153,7 +153,6 @@ export default {
     .routerView {
       width: 75%;
       height: 100%;
-
       min-width: 15em;
 
       overflow: auto;
