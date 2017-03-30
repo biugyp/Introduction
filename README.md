@@ -1,3 +1,5 @@
+# 会持续推出还会推出优化版本
+
 # introduction
 
 > A Vue.js project
