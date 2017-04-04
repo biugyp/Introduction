@@ -1,7 +1,7 @@
-# 会持续推出还会推出优化版本
-
 # introduction
+# 会持续推出还会推出优化版本
 # 接下来会加上动画和手势操作
+
 > A Vue.js project
 
 ## Build Setup
