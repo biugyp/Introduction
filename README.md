@@ -1,5 +1,5 @@
 # introduction
-
+# 接下来会加上动画和手势操作
 > A Vue.js project
 
 ## Build Setup

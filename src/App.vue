@@ -32,7 +32,7 @@ export default {
       this.routerPage=this.routerArray.indexOf(to.path.slice(1))===-1?0:this.routerArray.indexOf(to.path.slice(1))
       next()
     })
-
+    
   },
   methods: {
     mouseWheelEvent:_.debounce(function(event){
