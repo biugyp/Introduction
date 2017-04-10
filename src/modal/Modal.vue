@@ -120,6 +120,7 @@
     },
     created(){
       register(this)
+      window.$modal = this.modal
     }
   }
 

@@ -1,4 +1,3 @@
-
 const BaseBox = {
   props: ['data', 'onCommit'],
   methods: {

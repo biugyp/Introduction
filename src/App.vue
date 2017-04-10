@@ -3,12 +3,14 @@
     <div class="container" v-on:mousewheel="mouseWheelEvent($event)" v-on:DOMMouseScroll="mouseWheelEvent($event)" v-on:tap="console.log(1)">
       <leftNav class="leftNav" v-show="navShow" v-bind:handleScroll="routerPage" v-on:routerChange="routerChange"></leftNav>
       <router-view class="routerView"></router-view>
+      <modal @show="blurStart" @hide="blurEnd"></modal>
     </div>
   </div>
 </template>
 
 <script>
 import leftNav from 'components/LeftNav'
+import Modal from 'modal/Modal.vue'
 import _ from 'lodash'
 export default {
   name: 'app',
@@ -17,11 +19,12 @@ export default {
       routerArray:['information','project','skill','communication'],
       routerPage:0,
       navShow:true,
-      startY:-1
+      startY:-1,
+      isBlur: false
     }
   },
   created(){
-    
+
     this.dyShowNav();
 
     window.onresize=_.debounce(this.dyShowNav,50)
@@ -57,7 +60,7 @@ export default {
       }else{
         this.navShow=true
       }
-    } 
+    }, 
     // touchStart:_.debounce(function(event){
     //    event.preventDefault();
     //    let touch=event.touches[0]
@@ -78,10 +81,17 @@ export default {
     // touchEnd(event){
     //   event.preventDefault()
     //   this.startY=-1
-    // }
+    // },
+    blurStart () {
+        this.isBlur = true
+    },
+    blurEnd () {
+        this.isBlur = false
+    }
   },
   components: {
-    leftNav
+    leftNav,
+    Modal
   }
 }
 </script>
