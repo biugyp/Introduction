@@ -10,6 +10,9 @@ import 'element-ui/lib/theme-default/index.css'
 Vue.use(Element)
 Vue.use(VueTouch, {name: 'v-touch'})
 
+import { Modal } from './plugins/modal'
+Vue.use(Modal)
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
