@@ -24,7 +24,6 @@ export default {
     }
   },
   created(){
-
     this.dyShowNav();
 
     window.onresize=_.debounce(this.dyShowNav,50)
