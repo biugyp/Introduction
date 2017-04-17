@@ -1,9 +1,9 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
   <div id="app">
     <div class="container" v-on:mousewheel="mouseWheelEvent($event)" v-on:DOMMouseScroll="mouseWheelEvent($event)" v-on:tap="console.log(1)">
+      <modal @show="blurStart" @hide="blurEnd"></modal>
       <leftNav class="leftNav" v-show="navShow" v-bind:handleScroll="routerPage" v-on:routerChange="routerChange"></leftNav>
       <router-view class="routerView"></router-view>
-      <modal @show="blurStart" @hide="blurEnd"></modal>
     </div>
   </div>
 </template>
