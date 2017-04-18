@@ -26,11 +26,15 @@
   export default {
     name: 'leftNav',
     props: ['handleScroll'],
+
     data() {
       return {
         ifIconShadow: this.handleScroll,
         routerArray:['information','project','skill','communication']
       }
+    },
+    created() {
+      this.$modal({type:'Alert',data:{title:'最近还在优化',message:'包括手势、优化屏幕适配、动画'}})
     },
     watch:{
       handleScroll:function (){

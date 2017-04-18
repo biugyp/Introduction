@@ -19,7 +19,7 @@
     left: 0;
     height: 100%;
     width: 100%;
-
+    z-index: 100;
     overflow: hidden;
   }
 
@@ -120,7 +120,6 @@
     },
     created(){
       register(this)
-      window.$modal = this.modal
     }
   }
 
